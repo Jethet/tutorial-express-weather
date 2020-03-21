@@ -1,7 +1,6 @@
 const axios = require("axios");
 const dotenv = require("dotenv").config();
-
-const Weather = require("../Weather");
+const Weather = require("../model/Weather");
 
 exports.renderHomePage = (req, res) => {
   res.render("index");
@@ -21,15 +20,19 @@ exports.getWeather = (req, res) => {
   } else {
     axios
       .get(url)
-      .then(response =>
+      .then(response => {
+        const { temp: temperature } = response.data.main;
+        const { temp: location } = response.data;
         res.render("index", {
-          weather: `It is currently ${response.data.main.temp} in ${response.data.name}.`
-        })
-      )
-      .catch(err => console.log(err));
+          weather: `It is currently ${temperature} in ${location}.`
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
+};
 
-  exports.renderAboutPage = (req, res) => {
-    res.render("about");
-  };
+exports.renderAboutPage = (req, res) => {
+  res.render("about");
 };
