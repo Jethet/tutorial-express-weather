@@ -22,9 +22,10 @@ exports.getWeather = (req, res) => {
       .get(url)
       .then(response => {
         const { temp: temperature } = response.data.main;
-        const { temp: location } = response.data;
+        const { feels_like: temperatureExperience } = response.data.main;
+        const { name: location } = response.data;
         res.render("index", {
-          weather: `It is currently ${temperature} in ${location}.`
+          weather: `It is currently ${temperature} degrees in ${location}. It feels like ${temperatureExperience} degrees.`
         });
       })
       .catch(error => {
