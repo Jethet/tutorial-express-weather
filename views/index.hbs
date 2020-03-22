@@ -28,6 +28,44 @@
       </ul>
     </div>
   </nav>
+  <sidebar style="margin: 20px;">
+    <ul style="list-style: none;">
+      <li>Home</li>
+      <li>About</li>
+    </ul>
+    <form contenteditable="true" style="margin: 20px;">You can edit this text</form>
+  </sidebar>
+
+  <img>
+  <a href="/public/favicon.ico" download="Download.ico">Download icon</a>
+  <br>
+  <br>
+
+  <input list="languages" placeholder="Choose your language" style="margin: 20px;" />
+  <datalist id="languages">
+    <option>English</option>
+    <option>French</option>
+    <option>German</option>
+    <option>Spanish</option>
+  </datalist>
+  <details>
+    <summary> English </summary>
+    <p>The world's most spoken language</p>
+  </details>
+  <details>
+    <summary> Spanish </summary>
+    <p>
+      <q>The world's <mark>third</mark> most spoken language</q><br>
+      <cite>Wikipedia</cite>
+    </p>
+  </details>
+  <br>
+  <p draggable="true">OK, let's see if you can drag this someplace else.</p>
+  <br>
+  <p>And some music?</p>
+  <br>
+  <audio controls src="/public/burp.wav"></audio>
+
 
   <div class="row">
     <div class="col-lg-12 text-center main">
@@ -42,6 +80,8 @@
         <button>Search</button>
       </form>
       <div class="mt-3">
+        <label for="temp">Temperature meter:</label>
+        <meter id="temp" min="0" max="100" low="30" high="60" optimum="80" value="{{weather.temp}}"></meter>
         {{ weather }}
         {{ error }}
       </div>
