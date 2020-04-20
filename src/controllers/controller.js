@@ -24,8 +24,13 @@ exports.getWeather = (req, res) => {
         const { temp: temperature } = response.data.main;
         const { feels_like: temperatureExperience } = response.data.main;
         const { name: location } = response.data;
+        console.log(temperature);
+        console.log(temperatureExperience);
+
         res.render("index", {
-          weather: `It is currently ${temperature} degrees in ${location}. It feels like ${temperatureExperience} degrees.`
+          temperature,
+          temperatureExperience,
+          location
         });
       })
       .catch(error => {
